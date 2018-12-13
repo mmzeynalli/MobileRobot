@@ -1,6 +1,9 @@
 # MobileRobot
+
 Final Project from Microprocessor Systems course (ENCE 4731)
+
 Microcontroller used: STM32F103C8T6
+
 Library used: Standart Peripheral Library
 
 The Mobile Car:
