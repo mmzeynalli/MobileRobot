@@ -50,3 +50,12 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Workbench files
+./CMSIS/
+./startup/
+./StdPeriph_Driver/
+*.cproject
+*.project
+*.ld
+*.xml
