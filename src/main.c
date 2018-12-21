@@ -14,6 +14,8 @@
 #include "servo.h"
 
 const double norm_dist = 20;
+const double movable_obj_height = 15;
+const double immovable_obj_height = 10;
 
 int main(void)
 {
@@ -29,8 +31,15 @@ int main(void)
 		d = read_distance();
 
 		if(d > norm_dist) //if reaches the edge
+		{
 			car_stop();
-		else
+
+		}
+		else if(d == movable_obj_height)
+		{
+
+		}
+		else if(d == immovable_obj_height)
 		{
 
 		}

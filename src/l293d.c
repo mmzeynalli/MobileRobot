@@ -6,6 +6,7 @@
  */
 
 #include "l293d.h"
+#include "delay.h"
 
 void init_motors()
 {
@@ -33,35 +34,37 @@ void init_motors()
 	GPIO_Init(PORT, &GPIO_InitStruct);
 }
 
+void move_backward()
+{
+	GPIO_SetBits(PORT, PIN_MOTOR1_BACK);
+	GPIO_SetBits(PORT, PIN_MOTOR2_BACK);
+	GPIO_ResetBits(PORT, PIN_MOTOR1_FWD);
+	GPIO_ResetBits(PORT, PIN_MOTOR2_FWD);
+}
+
+void turn_right()
+{
+	GPIO_SetBits(PORT, PIN_MOTOR1_FWD);
+	GPIO_SetBits(PORT, PIN_MOTOR2_BACK);
+	GPIO_ResetBits(PORT, PIN_MOTOR1_BACK);
+	GPIO_ResetBits(PORT, PIN_MOTOR2_FWD);
+}
+
+void turn_left()
+{
+	GPIO_SetBits(PORT, PIN_MOTOR1_BACK);
+	GPIO_SetBits(PORT, PIN_MOTOR2_FWD);
+	GPIO_ResetBits(PORT, PIN_MOTOR1_FWD);
+	GPIO_ResetBits(PORT, PIN_MOTOR2_BACK);
+}
+
+
+/* MAIN FUNCTIONS */
 void car_move_forward()
 {
 	GPIO_SetBits(PORT, PIN_MOTOR1_FWD);
 	GPIO_SetBits(PORT, PIN_MOTOR2_FWD);
 	GPIO_ResetBits(PORT, PIN_MOTOR1_BACK);
-	GPIO_ResetBits(PORT, PIN_MOTOR2_BACK);
-}
-
-void car_move_backward()
-{
-	GPIO_SetBits(PORT, PIN_MOTOR1_BACK);
-	GPIO_SetBits(PORT, PIN_MOTOR2_BACK);
-	GPIO_ResetBits(PORT, PIN_MOTOR1_FWD);
-	GPIO_ResetBits(PORT, PIN_MOTOR2_FWD);
-}
-
-void car_turn_right()
-{
-	GPIO_SetBits(PORT, PIN_MOTOR1_FWD);
-	GPIO_SetBits(PORT, PIN_MOTOR2_BACK);
-	GPIO_ResetBits(PORT, PIN_MOTOR1_BACK);
-	GPIO_ResetBits(PORT, PIN_MOTOR2_FWD);
-}
-
-void car_turn_left()
-{
-	GPIO_SetBits(PORT, PIN_MOTOR1_BACK);
-	GPIO_SetBits(PORT, PIN_MOTOR2_FWD);
-	GPIO_ResetBits(PORT, PIN_MOTOR1_FWD);
 	GPIO_ResetBits(PORT, PIN_MOTOR2_BACK);
 }
 
@@ -71,4 +74,24 @@ void car_stop()
 	GPIO_ResetBits(PORT, PIN_MOTOR2_FWD);
 	GPIO_ResetBits(PORT, PIN_MOTOR1_BACK);
 	GPIO_ResetBits(PORT, PIN_MOTOR2_BACK);
+}
+
+
+void car_turn_left() //turn left and stop
+{
+	turn_left();
+	delay_ms(1000);
+	car_stop();
+}
+
+/* WRITE FUNC TO TURNRIGHT and MOVEBACKWARD */
+
+void car_turn_right()
+{
+
+}
+
+void car_move_backwards()
+{
+
 }
